@@ -2114,9 +2114,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^16.3.2":
-  version: 16.3.3
-  resolution: "@types/node@npm:16.3.3"
-  checksum: e597a54070815170d8f541c778900023f2522c27be9c56b2b8411d663da1ef5226f9d16ec158c5d9c84ddcc85551e3d02aa68046aa108b4c6085bc7c95a5bebb
+  version: 16.4.0
+  resolution: "@types/node@npm:16.4.0"
+  checksum: 3f2aaccbe8795079dad399f9c0e90ebf97093835dbbe93284a3655b1c018b9db34c76b8ee16f14b06b6e6e3f69b23208055f8b7417be24f7eaaa048883af37c1
   languageName: node
   linkType: hard
 
@@ -4235,9 +4235,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^7.6.0":
-  version: 7.7.0
-  resolution: "cypress@npm:7.7.0"
+"cypress@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "cypress@npm:8.0.0"
   dependencies:
     "@cypress/request": ^2.88.5
     "@cypress/xvfb": ^1.2.4
@@ -4282,7 +4282,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: dff882452e408927a3cc71604f3fb445f2d8e02855b71ff7f4776de664d799fcffee1d53ec9fb2319ce71d3320ed3e387b71d8a4ad86046fad8187f18d70a966
+  checksum: 03986bbb0db57f462dca8fbabb236b8ef90685be394ca8e7a1f097e976a7cd774fcdc79638a0e798480276df8ab37a60a66139ede8df6dcc8a758871d5a0937c
   languageName: node
   linkType: hard
 
@@ -6013,7 +6013,7 @@ fsevents@^1.2.7:
     chalk: ^4.1.1
     cors: ^2.8.5
     css-loader: ^5.2.6
-    cypress: ^7.6.0
+    cypress: ^8.0.0
     dayjs: ^1.10.4
     dotenv: ^10.0.0
     eslint: ^7.31.0
