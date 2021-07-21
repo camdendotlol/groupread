@@ -4,7 +4,7 @@ Groupread is a **self-hostable** platform for hosting book discussions.
 
 Pick a book via OpenLibrary's API and Groupread will fill in the metadata and create a discussion group. Each group is inextricably tied to one book, which emphasizes the frictionless group creation process and keeps discussion focused and on-topic.
 
-A demo server is available at [http://gr.camdenmecklem.com/](http://gr.camdenmecklem.com/).
+A demo server is available at [https://gr.camdenmecklem.com/](https://gr.camdenmecklem.com/).
 
 ## Table of Contents
 
