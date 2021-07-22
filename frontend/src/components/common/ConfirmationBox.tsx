@@ -21,10 +21,10 @@ const ConfirmationBox: React.FC<Props> = ({ text, callback, active, setActive })
       <div className='modal-content'>
         <div className='box has-text-centered'>
           <h2 className='subtitle'>{text}</h2>
-          <div className='is-flex is-flex-wrap-wrap is-justify-content-center'>
+          <div className='is-flex is-flex-wrap-wrap is-justify-content-right'>
             <button
               onClick={() => callback()}
-              className='button is-primary mx-2'
+              className='button is-success mx-2'
             >
               Yes
             </button>
