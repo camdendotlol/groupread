@@ -65,7 +65,7 @@ const GroupBanner: React.FC<Props> = ({ group }) => {
     if (user && memberIDs.includes(user.id)) return null
 
     return (
-      <div className='box hero group-hero has-text-centered is-primary mb-4'>
+      <div className='box hero has-text-centered is-primary mb-4'>
         <div className='hero-body'>
           <h1 className='title'>{displayMembers(group.members)}</h1>
           {handleJoinButton(user ? user.id : null)}
@@ -84,7 +84,6 @@ const GroupBanner: React.FC<Props> = ({ group }) => {
         />
         <h1 className='title'>{group.bookTitle}</h1>
         <h1 className='subtitle'>by {group.bookAuthor}</h1>
-        {/* TODO: add admin info to group object from server so we can finally dump this helper function */}
         <h4>Hosted by {getDisplayName(group.AdminId, group.members)}</h4>
       </div>
     </>
