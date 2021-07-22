@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../hooks'
 import { getPersonalInfo } from '../../reducers/userReducer'
+import BookCover, { CoverSize } from '../common/BookCover'
 import Dropdown from '../common/Dropdown'
 
 const GroupDropdown: React.FC = () => {
@@ -30,7 +31,10 @@ const GroupDropdown: React.FC = () => {
           {user.Groups.map(g =>
             <Link to={`/groups/${g.id}`} key={g.id}>
               <li className='dropdown-group-item' >
-                <img src={`https://covers.openlibrary.org/b/olid/${g.bookOLID}-S.jpg`} alt='' />
+                <BookCover
+                  olid={g.bookOLID}
+                  size={CoverSize.Small}
+                />
                 {g.bookTitle}
               </li>
             </Link>

@@ -23,7 +23,7 @@ const BookCover: React.FC<Props> = ({ size, olid }) => {
 
   return <img
     src={`https://covers.openlibrary.org/b/olid/${olid}-${size}.jpg`}
-    alt=""
+    alt=''
     className='image cover-image is-inline-block'
   />
 }

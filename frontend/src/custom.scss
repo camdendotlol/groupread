@@ -72,6 +72,10 @@ body {
   height: 60px;
 }
 
+.dropdown-group-item img {
+  height: 60px;
+}
+
 .dropdown-group-item:hover, .dropdown-group-item:focus {
   background: #e9e9e9;
 }
@@ -96,7 +100,7 @@ body {
   width: 240px;
 }
 
-.cover-image {
+.group-hero .cover-image {
   height: 270px;
   width: 180px;
 }
