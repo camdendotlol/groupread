@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import downArrow from '../../../static/svg/angle-down.svg'
+import upArrow from '../../../static/svg/angle-up.svg'
 
 interface Props {
   label: string,
@@ -10,8 +12,8 @@ const Dropdown: React.FC<Props> = ({ label, content }) => {
 
   const handleArrow = () => (
     dropdownVisible
-      ? <span>&#9650;</span>
-      : <span>&#9660;</span>
+      ? <img className='dropdown-arrow' src={upArrow} />
+      : <img className='dropdown-arrow' src={downArrow} />
   )
 
   const list = () => (

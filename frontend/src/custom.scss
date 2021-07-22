@@ -45,6 +45,12 @@ body {
   background: #757763 !important;
 }
 
+.dropdown-arrow {
+  filter: invert(100%);
+  height: 16px;
+  width: 16px;
+}
+
 .dropdown-list {
   position: absolute;
   top: 48px;
