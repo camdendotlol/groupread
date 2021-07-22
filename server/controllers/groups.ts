@@ -178,6 +178,27 @@ groupsRouter.post('/join/:group', async (req: RequestWithToken, res) => {
   return res.status(200).json({ user: sanitizeUser(user), groupID: group.id })
 })
 
+// Leave a group
+groupsRouter.post('/leave/:group', async (req: RequestWithToken, res) => {
+  const token = req.token
+
+  let tokenID
+  try {
+    tokenID = checkToken(token)
+  } catch(e) {
+    return res.status(400).json({ error: `${e.message}` })
+  }
+
+  const user = await User.findOne({ where: { id: tokenID } })
+  if (!user) return res.status(400).json({ error: 'user not found' })
+  const group = await Group.findOne({ where: { id: req.params.group } })
+  if (!group) return res.status(400).json({ error: 'group not found' })
+
+  await user.removeGroup(group.id)
+
+  return res.status(200).json({ user: sanitizeUser(user), groupID: group.id })
+})
+
 // Schedule posts for a group
 // Auto-populates the list of posts with future weekly threads
 groupsRouter.post('/schedule/:group', async (req: RequestWithToken, res: express.Response) => {

@@ -4,7 +4,8 @@ import {
   BelongsToManyGetAssociationsMixin,
   Optional,
   BelongsToManySetAssociationsMixin,
-  Association
+  Association,
+  BelongsToManyRemoveAssociationMixin
 } from 'sequelize'
 import getPool from '../utils/db'
 import Group from './group'
@@ -37,6 +38,7 @@ class User extends Model<UserAttributes, UserCreationAttributes>
 
   public getGroups!: BelongsToManyGetAssociationsMixin<Group>
   public addGroup!: BelongsToManySetAssociationsMixin<Group, string>
+  public removeGroup!: BelongsToManyRemoveAssociationMixin<Group, string>
 
   public readonly groups?: Group[]
   public readonly posts?: Post[]
