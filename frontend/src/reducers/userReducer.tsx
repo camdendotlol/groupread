@@ -5,6 +5,7 @@ import userService from '../services/users'
 import postService from '../services/posts'
 import { LoginData, RegisterData, UserState } from '../types'
 import users from '../services/users'
+import { leaveGroup } from './groupReducer'
 
 export const initialState: UserState = { loading: true, data: null }
 
@@ -140,6 +141,19 @@ const userSlice = createSlice({
         data: {
           ...state.data,
           ...payload
+        }
+      }
+    }),
+    builder.addCase(leaveGroup.fulfilled, (state, { payload }) => {
+      if (!state.data) {
+        return state
+      }
+
+      return {
+        loading: false,
+        data: {
+          ...state.data,
+          Groups: state.data.Groups.filter(g => g.id !== payload.groupID),
         }
       }
     })

@@ -1,6 +1,5 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-import { joinGroup } from '../../reducers/groupReducer'
+import { useAppSelector } from '../../hooks'
 import { getDisplayName } from '../../lib/posts'
 import BookCover from '../common/BookCover'
 import { CoverSize } from '../common/BookCover'
@@ -8,22 +7,14 @@ import {
   Group,
   User
 } from '../../types'
+import JoinGroupButton from '../common/JoinGroupButton'
 
 interface Props {
   group: Group
 }
 
 const GroupBanner: React.FC<Props> = ({ group }) => {
-  const dispatch = useAppDispatch()
-
   const user = useAppSelector(({ user }) => user.data)
-
-  const handleGroupMembership = (id: string, token: string) => {
-    dispatch(joinGroup({
-      id: id,
-      token: token
-    }))
-  }
 
   if (!group || !group.members) {
     return (
@@ -62,9 +53,7 @@ const GroupBanner: React.FC<Props> = ({ group }) => {
         <>
           <p className='title is-5'>You&apos;ve been invited to join.</p>
           <p className='subtitle'>After joining, you&apos;ll have access to this group&apos;s private discussions.</p>
-          <button className='button is-link' type='button' onClick={() => handleGroupMembership(group.id, user.token)}>
-            Join
-          </button>
+          <JoinGroupButton groupID={group.id} />
         </>
       )
     } else {

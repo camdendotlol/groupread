@@ -41,7 +41,7 @@ interface EditPostPayload {
   postObject: EditPostObject
 }
 
-interface JoinGroupPayload {
+interface MembershipPayload {
   id: string,
   token: string
 }
@@ -141,7 +141,7 @@ export const editPost = createAsyncThunk(
 
 export const joinGroup = createAsyncThunk(
   '/group/joinGroupStatus',
-  async (payload: JoinGroupPayload) => {
+  async (payload: MembershipPayload) => {
     try {
       await groupService.joinGroup(payload.id, payload.token)
       const newMemberList = await groupService.getGroupMembers(payload.id)
@@ -150,6 +150,22 @@ export const joinGroup = createAsyncThunk(
         members: newMemberList
       }
     } catch(e) {
+      throw new Error(`${e.message}`)
+    }
+  }
+)
+
+export const leaveGroup = createAsyncThunk(
+  '/group/leaveGroupStatus',
+  async (payload: MembershipPayload) => {
+    try {
+      await groupService.leaveGroup(payload.id, payload.token)
+      const newMemberList = await groupService.getGroupMembers(payload.id)
+      return {
+        groupID: payload.id,
+        members: newMemberList
+      }
+    } catch (e) {
       throw new Error(`${e.message}`)
     }
   }
@@ -337,6 +353,22 @@ const groupSlice = createSlice({
       }
     }),
     builder.addCase(joinGroup.fulfilled, (state, { payload }) => {
+      const group = state.groups.find(g => g.id === payload.groupID)
+      if (!group) {
+        return state
+      }
+      return state = {
+        pending: false,
+        groups: state.groups.map(g => g.id === payload.groupID ? g = { ...g, members: payload.members } : g)
+      }
+    }),
+    builder.addCase(leaveGroup.pending, (state) => {
+      return state = {
+        pending: true,
+        groups: state.groups
+      }
+    }),
+    builder.addCase(leaveGroup.fulfilled, (state, { payload }) => {
       const group = state.groups.find(g => g.id === payload.groupID)
       if (!group) {
         return state

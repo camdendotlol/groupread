@@ -13,6 +13,7 @@ import {
   UserObject,
   User
 } from '../../types'
+import LeaveGroupButton from '../common/LeaveGroupButton'
 
 const GroupView: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -95,11 +96,18 @@ const GroupView: React.FC = () => {
     }
   }
 
+  const handleLeaveButton = () => {
+    if (user && memberIDs.includes(user.id)) {
+      return <LeaveGroupButton groupID={group.id} />
+    }
+  }
+
   return (
-    <div className='container pt-4 pb-4'>
+    <div className='container pt-4 pb-4 is-centered'>
       {handleBanner()}
       {handleLoggedInContent()}
       <MembersList adminID={group.AdminId} groupMembers={members} />
+      {handleLeaveButton()}
     </div>
   )
 }

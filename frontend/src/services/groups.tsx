@@ -52,16 +52,24 @@ const createGroup = async (group: GroupCreationData, token: string): Promise<Gro
   return res.data
 }
 
-interface JoinGroupResponse {
+interface MembershipResponse {
   user: User,
   groupID: string
 }
 
-const joinGroup = async (groupID: string, token: string): Promise<JoinGroupResponse> => {
+const joinGroup = async (groupID: string, token: string): Promise<MembershipResponse> => {
   const config = {
     headers: { Authorization: `bearer ${token}` }
   }
   const res = await axios.post(`${baseUrl}/join/${groupID}`, null, config)
+  return res.data
+}
+
+const leaveGroup = async (groupID: string, token: string): Promise<MembershipResponse> => {
+  const config = {
+    headers: { Authorization: `bearer ${token}` }
+  }
+  const res = await axios.post(`${baseUrl}/leave/${groupID}`, null, config)
   return res.data
 }
 
@@ -88,4 +96,4 @@ const setSchedule = async (weekObject: unknown, groupID: string, token: string):
   return res.data
 }
 
-export default { getAllGroups, getGroupDetails, getGroupPosts, getGroupMembers, createGroup, joinGroup, setSchedule }
+export default { getAllGroups, getGroupDetails, getGroupPosts, getGroupMembers, createGroup, joinGroup, leaveGroup, setSchedule }
