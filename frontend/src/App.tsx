@@ -13,7 +13,6 @@ const PostView = React.lazy(() => import('./components/Posts'))
 const GroupScheduler = React.lazy(() => import('./components/GroupScheduler'))
 const Compatibility = React.lazy(() => import('./components/Compatibility'))
 import './App.scss'
-import './custom.scss'
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
