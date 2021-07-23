@@ -1,5 +1,6 @@
 import path from 'path'
 import dotenv from 'dotenv'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 dotenv.config()
 
@@ -10,6 +11,7 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     chunkFilename: '[id].chunk.js'
   },
+  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
       {
@@ -26,12 +28,9 @@ const config = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          require.resolve('style-loader'),
-          // Translates CSS into CommonJS
+          MiniCssExtractPlugin.loader,
           require.resolve('css-loader'),
-          // Compiles Sass to CSS
-          require.resolve('sass-loader'),
+          require.resolve('sass-loader')
         ],
       },
       {
