@@ -66,11 +66,15 @@ All contributions are licensed under the [GNU Affero General Public License v3.0
 
 - moderation tools for group owners ⭐⭐⭐
 
+  - kick users (should function as a permanent ban, reversible by the admin)
+
+  - remove posts
+
 - proper frontend testing with Cypress (current status: cypress is fully set up for component testing and end-to-end testing, and is just waiting for tests to be written) ⭐⭐⭐
 
-- migrate to the Google Books API for metadata ⭐⭐
-
 - basic user profile pages, nothing fancy (current status: an API call to fetch your own info is implemented, it should be simple to write another one for getting other users' info with some personal data removed) ⭐⭐
+
+- migrate to the Google Books API for metadata ⭐
 
 - Docker container for easier self-hosting ⭐
 
