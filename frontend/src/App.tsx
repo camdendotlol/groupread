@@ -5,6 +5,7 @@ import { useAppDispatch } from './hooks'
 import Navbar from './components/Navbar'
 import HomePage from './components/HomePage'
 import Footer from './components/Footer'
+import LoadingScreen from './components/LoadingScreen'
 const GroupView = React.lazy(() => import('./components/GroupView'))
 const GroupCreation = React.lazy(() => import('./components/GroupCreation'))
 const NewPostForm = React.lazy(() => import('./components/NewPostForm'))
@@ -33,49 +34,49 @@ const App: React.FC = () => {
       <div className='navbar-offset'>
         <Switch>
           <Route path="/groups/create">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <GroupCreation />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/schedule">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <GroupScheduler />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/submit">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <NewPostForm />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/:pid">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <PostView />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <GroupView />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <GroupList />
               </div>
             </Suspense>
           </Route>
           <Route path="/compatibility">
-            <Suspense fallback={<p>loading...</p>}>
+            <Suspense fallback={<LoadingScreen />}>
               <div className="mobile-container">
                 <Compatibility />
               </div>

@@ -180,6 +180,11 @@ body {
   margin: 0 auto;
 }
 
+.loading-icon {
+  margin: 0 auto;
+  transition: 0.2s;
+}
+
 // 1023px is Bulma's breakpoint to make containers full-width.
 // By wrapping them all in this special div, we can provide margins
 // on mobile devices.
