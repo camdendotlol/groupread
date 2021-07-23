@@ -4,7 +4,7 @@ import backgroundImg from '../../../static/images/coffee.jpg'
 
 const HomePage: React.FC = () => {
   return (
-    <section id='home-page' className='homepage-hero hero is-black is-fullheight-with-navbar' style={{ backgroundImage: `url(${backgroundImg})` }}>
+    <section id='home-page' className='homepage-hero hero is-black is-fullheight' style={{ backgroundImage: `url(${backgroundImg})` }}>
       <div className='hero-body'>
         <div className='container is-max-desktop'>
           <div className='has-text-centered hero-text p-6 mb-4'>

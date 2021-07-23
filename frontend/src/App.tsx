@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom'
 import { initializeUser } from './reducers/userReducer'
 import { useAppDispatch } from './hooks'
 import Navbar from './components/Navbar'
-import HomePage from './components/HomePage'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+const HomePage = React.lazy(() => import('./components/HomePage'))
 const GroupView = React.lazy(() => import('./components/GroupView'))
 const GroupCreation = React.lazy(() => import('./components/GroupCreation'))
 const NewPostForm = React.lazy(() => import('./components/NewPostForm'))
@@ -24,71 +24,72 @@ const App: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <>
       <Navbar />
-      {/* mobile-container doesn't do anything unless the user on on a small screen,
+      {/* mobile-container navbar-offset doesn't do anything unless the user on on a small screen,
       in which case it provides side margins to all content, Unfortunately, it messes up
       the homepage picture, so we have to wrap each individual component in this div
       to avoid affecting the homepage. */}
-
-      <div className='navbar-offset'>
+      <main>
         <Switch>
           <Route path="/groups/create">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <GroupCreation />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/schedule">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <GroupScheduler />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/submit">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <NewPostForm />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id/:pid">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <PostView />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups/:id">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <GroupView />
               </div>
             </Suspense>
           </Route>
           <Route path="/groups">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <GroupList />
               </div>
             </Suspense>
           </Route>
           <Route path="/compatibility">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container">
+              <div className="mobile-container navbar-offset">
                 <Compatibility />
               </div>
             </Suspense>
           </Route>
           <Route path="/">
-            <HomePage />
+            <Suspense fallback={<LoadingScreen />}>
+              <HomePage />
+            </Suspense>
           </Route>
         </Switch>
-        <Footer />
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   )
 }
 

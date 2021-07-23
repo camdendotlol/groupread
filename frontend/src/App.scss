@@ -63,8 +63,15 @@ body {
   color: $info !important;
 }
 
-// Applied to the div containing all other elements
-// to prevent the navbar from covering things up
+.navbar {
+  transition: opacity 0.2s ease-in;
+}
+
+.navbar-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .navbar-offset {
   position: relative;
   top: 52px;
