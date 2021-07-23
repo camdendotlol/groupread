@@ -97,5 +97,6 @@ export interface EditPostObject {
 
 export enum ErrorTypes {
   Unauthorized,
-  NotFound
+  NotFound,
+  NetworkError
 }

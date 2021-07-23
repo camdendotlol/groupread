@@ -6,8 +6,9 @@ dotenv.config()
 const config = {
   entry: './frontend/src/index.tsx',
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'build'),
-    filename: 'main.js',
+    chunkFilename: '[id].chunk.js'
   },
   module: {
     rules: [

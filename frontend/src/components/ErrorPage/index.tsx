@@ -13,9 +13,8 @@ const ErrorPage: React.FC<Props> = ({ errorType }) => {
       return 'You don\'t have permission to see this page.'
     case ErrorTypes.NotFound:
       return 'We couldn\'t find the resource you\'re looking for.'
-    default:
-      // This shouldn't be shown anywhere, but it's here just in case!
-      return 'An error occured displaying this page.'
+    case ErrorTypes.NetworkError:
+      return 'An error occured connecting to this page.'
     }
   }
 

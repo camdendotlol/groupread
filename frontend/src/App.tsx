@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
-import './App.scss'
-import './custom.scss'
-import Navbar from './components/Navbar'
-import GroupView from './components/GroupView'
-import HomePage from './components/HomePage'
-import GroupCreation from './components/GroupCreation'
+import React, { useEffect, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import NewPostForm from './components/NewPostForm'
-import GroupList from './components/GroupList'
-import PostView from './components/Posts'
-import Footer from './components/Footer'
-import GroupScheduler from './components/GroupScheduler'
-import Compatibility from './components/Compatibility'
 import { initializeUser } from './reducers/userReducer'
 import { useAppDispatch } from './hooks'
+import Navbar from './components/Navbar'
+import HomePage from './components/HomePage'
+import Footer from './components/Footer'
+const GroupView = React.lazy(() => import('./components/GroupView'))
+const GroupCreation = React.lazy(() => import('./components/GroupCreation'))
+const NewPostForm = React.lazy(() => import('./components/NewPostForm'))
+const GroupList = React.lazy(() => import('./components/GroupList'))
+const PostView = React.lazy(() => import('./components/Posts'))
+const GroupScheduler = React.lazy(() => import('./components/GroupScheduler'))
+const Compatibility = React.lazy(() => import('./components/Compatibility'))
+import './App.scss'
+import './custom.scss'
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -34,39 +34,53 @@ const App: React.FC = () => {
       <div className='navbar-offset'>
         <Switch>
           <Route path="/groups/create">
-            <div className="mobile-container">
-              <GroupCreation />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <GroupCreation />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/groups/:id/schedule">
-            <div className="mobile-container">
-              <GroupScheduler />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <GroupScheduler />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/groups/:id/submit">
-            <div className="mobile-container">
-              <NewPostForm />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <NewPostForm />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/groups/:id/:pid">
-            <div className="mobile-container">
-              <PostView />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <PostView />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/groups/:id">
-            <div className="mobile-container">
-              <GroupView />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <GroupView />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/groups">
-            <div className="mobile-container">
-              <GroupList />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <GroupList />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/compatibility">
-            <div className="mobile-container">
-              <Compatibility />
-            </div>
+            <Suspense fallback={<p>loading...</p>}>
+              <div className="mobile-container">
+                <Compatibility />
+              </div>
+            </Suspense>
           </Route>
           <Route path="/">
             <HomePage />
