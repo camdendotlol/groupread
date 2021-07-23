@@ -72,7 +72,7 @@ All contributions are licensed under the [GNU Affero General Public License v3.0
 
 - basic user profile pages, nothing fancy (current status: an API call to fetch your own info is implemented, it should be simple to write another one for getting other users' info with some personal data removed) ⭐⭐
 
-- address webpack warning about bundle size to improve loading performance ⭐
+- address webpack warning about bundle size to improve loading performance (current status: the largest components are in their own chunks, but the main bundle is still 1MB and should be cut down further) ⭐
 
 - Docker container for easier self-hosting ⭐
 
