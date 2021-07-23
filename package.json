@@ -12,6 +12,7 @@
     "start:cypress": "NODE_ENV=test yarn start",
     "test:e2e": "cypress run",
     "lint": "eslint .",
+    "analyze": "source-map-explorer 'build/main.js'",
     "build:server": "yarn tsc --build server/tsconfig.json",
     "build:ui": "webpack --mode=production",
     "start:full": "yarn build:server && yarn build:ui && yarn start"
@@ -79,6 +80,7 @@
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.34.0",
     "sass-loader": "^12.1.0",
+    "source-map-explorer": "^2.5.2",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.1.0",
     "supertest": "^6.1.3",
