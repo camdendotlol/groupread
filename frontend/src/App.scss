@@ -1,3 +1,14 @@
+// NOTE:
+// Groupread's use of Bulma should be considered deprecated.
+//
+// It was a good bootstrap (no pun intended) but I find myself increasingly
+// fighting with it and disagreeing with its implementations.
+//
+// New components should use styled-components and any major update
+// to an existing component should ideally include porting to styled-components.
+// However, I'm not planning to make time to specifically move everything over.
+// Custom styles should also be in a styled component instead of this file.
+
 @charset "utf-8";
 
 // Custom colors
@@ -31,7 +42,39 @@ $footer-background-color: $beige;
 $navbar-box-shadow-size: 0 0 3px;
 $navbar-box-shadow-color: #4e4a4a;
 
-@import 'bulma/bulma.sass';
+// PIECEMEAL BULMA IMPORTS
+// When removing Bulma from a component, check if the Bulma module(s) it used is/are
+// used anywhere else in Groupread. If not, delete its line from the imports below.
+
+@import 'bulma/sass/utilities/_all.sass';
+@import 'bulma/sass/base/_all.sass';
+
+// Bulma elements
+@import 'bulma/sass/elements/box.sass';
+@import 'bulma/sass/elements/button.sass';
+@import 'bulma/sass/elements/container.sass';
+@import 'bulma/sass/elements/content.sass';
+@import 'bulma/sass/elements/icon.sass';
+@import 'bulma/sass/elements/image.sass';
+@import 'bulma/sass/elements/notification.sass';
+@import 'bulma/sass/elements/other.sass';
+@import 'bulma/sass/elements/table.sass';
+@import 'bulma/sass/elements/title.sass';
+
+// Bulma form styles
+@import 'bulma/sass/form/_all.sass';
+
+// Bulma components
+@import 'bulma/sass/components/card.sass';
+@import 'bulma/sass/components/level.sass';
+@import 'bulma/sass/components/media.sass';
+@import 'bulma/sass/components/modal.sass';
+@import 'bulma/sass/components/navbar.sass';
+@import 'bulma/sass/components/tabs.sass';
+@import 'bulma/sass/components/panel.sass';
+
+@import 'bulma/sass/helpers/_all.sass';
+@import 'bulma/sass/layout/_all.sass';
 
 // Custom styles below
 
