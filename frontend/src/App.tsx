@@ -5,7 +5,7 @@ import { useAppDispatch } from './hooks'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
-const HomePage = React.lazy(() => import('./components/HomePage'))
+import HomePage from './components/HomePage'
 const GroupView = React.lazy(() => import('./components/GroupView'))
 const GroupCreation = React.lazy(() => import('./components/GroupCreation'))
 const NewPostForm = React.lazy(() => import('./components/NewPostForm'))
@@ -82,9 +82,7 @@ const App: React.FC = () => {
             </Suspense>
           </Route>
           <Route path="/">
-            <Suspense fallback={<LoadingScreen />}>
-              <HomePage />
-            </Suspense>
+            <HomePage />
           </Route>
         </Switch>
       </main>

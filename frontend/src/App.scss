@@ -43,28 +43,8 @@ body {
   background: rgba(137, 207, 240, 0.5);
 }
 
-.homepage-hero {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.hero-text {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.homepage-group-link:hover {
-  text-decoration: underline;
-  color: $info !important;
-}
-
-.homepage-group-link:focus {
-  text-decoration: underline;
-  color: $info !important;
-}
-
 .navbar {
-  transition: opacity 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .navbar-hidden {
