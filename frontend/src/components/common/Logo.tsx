@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import tempLogo from '../../../static/images/temp_logo.png'
+import logo from '../../../static/images/logo.png'
 
 interface Props {
   size: string
@@ -14,7 +14,7 @@ const LogoDiv = styled.img`
 
 const Logo: React.FC<Props> = ({ size }) => {
   return (
-    <LogoDiv height={size} width={size} src={tempLogo} alt='' />
+    <LogoDiv height={size} width={size} src={logo} alt='' />
   )
 }
 
