@@ -113,8 +113,6 @@ usersRouter.get('/info/:id', async (req: RequestWithToken, res) => {
   // Less sanitization is needed here, but let's still avoid sending the password hash
   const hashlessUser = { ...user, passwordHash: undefined }
 
-  // const userGroups = await user.getGroups()
-
   res.status(200).json(hashlessUser)
 })
 

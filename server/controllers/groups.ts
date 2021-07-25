@@ -31,10 +31,6 @@ groupsRouter.get('/:id/members', async (req, res) => {
 
   if (!group) return res.status(400).json({ error: 'invalid group id' })
 
-  // Use the raw option to avoid Sequelize's goofy object format that makes it
-  // hard to run the sanitize function later.
-  // The nest option prevents the raw option from flattening the data, which breaks
-  // stuff on the frontend.
   const users = await group.getUsers()
   const userObjects = users.map(u => u.toJSON())
 
@@ -288,12 +284,6 @@ groupsRouter.post('/schedule/:group', async (req: RequestWithToken, res: express
   })
 
   await Post.bulkCreate(postsToSchedule)
-
-  // const jsonUser = user.toJSON() as UserObject
-  // const postsToReturn = postsToSchedule.map(p => p = {
-  //   ...p,
-  //   User: sanitizeUser(jsonUser)
-  // })
 
   const posts = await group.getPosts({ include: [{ model: User }] })
   const jsonPosts = posts.map(p => p.toJSON() as PostObject)

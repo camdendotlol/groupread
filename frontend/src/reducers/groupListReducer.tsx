@@ -1,5 +1,3 @@
-// IMPORTANT: This reducer is temporary for early development. Version 1.0 will not load all groups into state.
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import groupService from '../services/groups'
 import {

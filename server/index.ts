@@ -7,6 +7,7 @@ import fs from 'fs'
 
 // backend handles all requests starting with /api
 const server = http.createServer(app)
+
 // now let's handle everything else
 
 // get a list of files in /build
@@ -22,7 +23,7 @@ app.get('/:path', (req, res) => {
 })
 
 // Groupread uses react-router, so we need to redirect direct
-// links to index.html and then react-router can handle the URL
+// links to index.html and then react-router can handle the path
 app.get('/*', (req, res) => {
   return res.sendFile(path.join(staticFolder, 'index.html'))
 })

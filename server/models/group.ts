@@ -12,16 +12,6 @@ import getPool from '../utils/db'
 
 const db = getPool()
 
-// NOTICE: The group model has an association with the user table. Unfortunately, choosing Sequelize was a huge mistake
-// and I wasted hours trying to get the admin field to work with it. Now it's just done manually, by inserting the user's id
-// at group creation time. This is the same result in the DB that Sequelize would do if it worked right.
-
-// If you, dear reader, want to refactor to make the group-admin relation properly use the Sequelize API, I must warn you
-// that the docs are near-useless. They seem to rewrite their entire syntax with every update without bothering to update
-// old docs pages. Sequelize's support for TypeScript is pretty bad, requiring huge amounts of boilerplate without actually
-// taking much advantage of TypeScript's functionality. Someday, maybe Groupread will switch to a better ORM, but for now
-// I don't expect many changes to the models so I don't want to spend yet more time fighting with database stuff.
-
 interface GroupAttributes {
   id: string,
   bookTitle: string,
@@ -86,7 +76,7 @@ Group.init(
     },
     bookOLID: {
       type: DataTypes.STRING,
-      allowNull: true // TODO: add handling for works that lack OLIDs
+      allowNull: true
     },
     bookPageCount: {
       type: DataTypes.INTEGER,

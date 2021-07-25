@@ -80,8 +80,6 @@ postsRouter.post('/:group', async (req: RequestWithToken, res) => {
     })
   }
 
-  // post.setAuthor(user)
-  // post.addPost([ group ])
   await post.save()
 
   const jsonPost = post.toJSON()
