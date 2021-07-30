@@ -9,6 +9,7 @@ import { initialState as initialFormState } from '../../reducers/groupCreationRe
 import { formUpdateTitle, formUpdateAuthor, formUpdateYear, formUpdateIsbn, formUpdateOLID } from '../../reducers/groupCreationReducer'
 import { ErrorTypes, GroupCreationData } from '../../types'
 import ErrorPage from '../ErrorPage'
+import LoadingScreen from '../LoadingScreen'
 
 const CreateGroup: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -29,7 +30,8 @@ const CreateGroup: React.FC = () => {
   } = useForm<GroupCreationData>()
 
   const groupFormData = useAppSelector(({ groupFormData }) => groupFormData)
-  const user = useAppSelector(({ user }) => user)
+  const userState = useAppSelector(({ user }) => user)
+  const user = userState.data
 
   const queryTitle = watch('bookTitle')
   const queryAuthor = watch('bookAuthor')
@@ -51,14 +53,14 @@ const CreateGroup: React.FC = () => {
     // 2) Check for a token if the user is already initialized
     //     (if the user navigates here from another component with user state already initialized)
 
-    if (user.loading === false || user.data?.token) {
+    if (userState.loading === false || user?.token) {
       setIsLoading(false)
     }
   }, [user])
 
-  if (!user || !user.data) {
+  if (!user) {
     if (isLoading) {
-      return <p>loading...</p>
+      return <LoadingScreen />
     } else {
       return (
         <ErrorPage
@@ -80,14 +82,14 @@ const CreateGroup: React.FC = () => {
 
     // I don't know why TS thinks data is possibly null because there's null-checking above.
     // But this line makes it happy.
-    if (!user.data?.token) {
+    if (!user?.token) {
       return setError('bookTitle', { message: 'Authentication error. Are you signed in?' })
     }
 
     try {
       const res = await dispatch(createGroup({
         groupObject: groupObject,
-        token: user.data.token
+        token: user.token
       })).unwrap()
 
       // Even though the form is about to go out of view, we still need to reset
