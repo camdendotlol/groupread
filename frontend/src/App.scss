@@ -78,14 +78,6 @@ $navbar-box-shadow-color: #4e4a4a;
 
 // Custom styles below
 
-body {
-  font-family: $family-sans-serif, sans-serif;
-}
-
-::selection {
-  background: rgba(137, 207, 240, 0.5);
-}
-
 .navbar {
   transition: 0.2s ease-in;
 }
