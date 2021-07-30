@@ -7,7 +7,7 @@ import { LoginData, RegisterData, UserState } from '../types'
 import users from '../services/users'
 import { leaveGroup } from './groupReducer'
 
-export const initialState: UserState = { loading: true, data: null }
+export const initialState: UserState = { loading: false, data: null }
 
 // When the site is reloaded, the login cookie is validated serverside
 // to make sure 1) the user account still exists and 2) the token is still valid

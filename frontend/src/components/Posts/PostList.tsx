@@ -1,46 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { getGroupPosts } from '../../reducers/groupReducer'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import React from 'react'
 import PostCard from './PostListItem'
 import {
   Post,
-  UserObject,
-  Group
 } from '../../types'
 
 interface Props {
-  groupID: string
+  groupID: string,
+  posts: Post[]
 }
 
-const PostList: React.FC<Props> = ({ groupID }) => {
-  const [posts, setPosts] = useState<Array<Post>>([])
-
-  const dispatch = useAppDispatch()
-
-  const user: UserObject | null = useAppSelector(({ user }) => user.data)
-
-  const groups: Array<Group> = useAppSelector(({ group }) => group.groups)
-  const groupQuery: undefined | Group = groups.find(group => group.id === groupID)
-
-  if (!groupQuery) {
-    return <p>Invalid group ID</p>
-  }
-
-  const group = groupQuery
-
-  // Make sure nothing comes up when the user isn't signed in
-  useEffect(() => {
-    if (user) {
-      dispatch(getGroupPosts(groupID))
-    }
-  }, [user])
-
-  // There won't be posts on the first load if the group isn't cached,
-  // so run setPosts again when the group data is in state
-  useEffect(() => {
-    setPosts(group.posts)
-  }, [group])
-
+const PostList: React.FC<Props> = ({ groupID, posts }) => {
   const handlePosts = (posts: Array<Post>) => {
     if (posts.length === 0) {
       return (

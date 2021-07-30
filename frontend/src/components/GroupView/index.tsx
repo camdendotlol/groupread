@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { useParams, useHistory } from 'react-router-dom'
-import { getGroupDetails, getGroupMembers } from '../../reducers/groupReducer'
+import { getGroupDetails, getGroupMembers, getGroupPosts } from '../../reducers/groupReducer'
 import GroupBanner from './GroupBanner'
 import PostList from '../Posts/PostList'
 import MembersList from './MembersList'
@@ -10,7 +10,6 @@ dayjs.extend(relativeTime)
 import relativeTime from 'dayjs/plugin/relativeTime'
 import {
   Group,
-  UserObject,
   User,
   ErrorTypes
 } from '../../types'
@@ -24,12 +23,13 @@ const GroupView: React.FC = () => {
   const dispatch = useAppDispatch()
   const history = useHistory()
 
-  const user: UserObject | null = useAppSelector(({ user }) => user.data)
+  const userState = useAppSelector(({ user }) => user)
+  const user = userState.data
   const groupState = useAppSelector(({ group }) => group)
   const groups = groupState.groups
 
   // See if the group exists in the cache
-  const groupQuery: undefined | Group = groups.find(group => group.id === id)
+  const groupQuery = groups.find(group => group.id === id)
 
   // Set these up so they can be filled in later if applicable
   let members: Array<User> = []
@@ -40,14 +40,25 @@ const GroupView: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(getGroupDetails(id))
+    const getInfo = async () => {
+      await dispatch(getGroupDetails(id))
+      await dispatch(getGroupMembers(id))
+    }
+
+    getInfo()
   }, [id])
 
   useEffect(() => {
-    dispatch(getGroupMembers(id))
-  }, [id])
+    const getPosts = async () => {
+      await dispatch(getGroupPosts(id))
+    }
 
-  if (groupState.pending) {
+    if (user) {
+      getPosts()
+    }
+  }, [id, user])
+
+  if (groupState.pending || userState.loading) {
     return <LoadingScreen />
   }
 
@@ -63,7 +74,7 @@ const GroupView: React.FC = () => {
   memberIDs = members.map(m => m.id)
 
   if (group.id !== id || !members) {
-    return <p>loading...</p>
+    return <LoadingScreen />
   }
 
   const handlePostButton = () => {
@@ -93,7 +104,7 @@ const GroupView: React.FC = () => {
             {handlePostButton()}
           </div>
         </div>
-        <PostList groupID={id} />
+        <PostList groupID={id} posts={group.posts} />
       </>
     )
   }

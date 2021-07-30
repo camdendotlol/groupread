@@ -14,6 +14,7 @@ import {
 
 import { PostPayloadType } from './PostForm'
 import ErrorPage from '../ErrorPage'
+import LoadingScreen from '../LoadingScreen'
 
 const PostView: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -35,11 +36,12 @@ const PostView: React.FC = () => {
     dispatch(getGroupMembers(id))
   }, [id])
 
-  const user = useAppSelector(({ user }) => user)
+  const userState = useAppSelector(({ user }) => user)
+  const user = userState.data
   const groups = useAppSelector(({ group }) => group.groups)
   const group = groups.find(group => group.id === id)
 
-  if (!user.data && !user.loading) {
+  if (!user && !userState.loading) {
     return (
       <ErrorPage errorType={ErrorTypes.Unauthorized} />
     )
@@ -47,7 +49,7 @@ const PostView: React.FC = () => {
 
   if (!group || !group.posts || !group.members) {
     return (
-      <p>loading...</p>
+      <LoadingScreen />
     )
   }
 
@@ -55,7 +57,7 @@ const PostView: React.FC = () => {
 
   if (!post) {
     return (
-      <p>post not found :(</p>
+      <ErrorPage errorType={ErrorTypes.NotFound} />
     )
   }
 
