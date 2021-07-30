@@ -11,9 +11,12 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import {
   Group,
   UserObject,
-  User
+  User,
+  ErrorTypes
 } from '../../types'
 import LeaveGroupButton from '../common/LeaveGroupButton'
+import LoadingScreen from '../LoadingScreen'
+import ErrorPage from '../ErrorPage'
 
 const GroupView: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -22,7 +25,8 @@ const GroupView: React.FC = () => {
   const history = useHistory()
 
   const user: UserObject | null = useAppSelector(({ user }) => user.data)
-  const groups: Array<Group> = useAppSelector(({ group }) => group.groups)
+  const groupState = useAppSelector(({ group }) => group)
+  const groups = groupState.groups
 
   // See if the group exists in the cache
   const groupQuery: undefined | Group = groups.find(group => group.id === id)
@@ -43,10 +47,14 @@ const GroupView: React.FC = () => {
     dispatch(getGroupMembers(id))
   }, [id])
 
+  if (groupState.pending) {
+    return <LoadingScreen />
+  }
+
   // Now we can have a properly typed group object with
   // the possibility of being undefined out of the way
   if (!groupQuery) {
-    return <p>Group not found</p>
+    return <ErrorPage errorType={ErrorTypes.NotFound} />
   }
   const group: Group = groupQuery
 

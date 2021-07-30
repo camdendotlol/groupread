@@ -209,6 +209,12 @@ const groupSlice = createSlice({
         groups: [ ...state.groups, payload ]
       }
     }),
+    builder.addCase(getGroupDetails.rejected, (state) => {
+      return {
+        pending: false,
+        groups: state.groups
+      }
+    })
     builder.addCase(getGroupPosts.pending, (state) => {
       return state = {
         pending: true,
