@@ -15,6 +15,7 @@ const GroupScheduler = React.lazy(() => import('./components/GroupScheduler'))
 const Compatibility = React.lazy(() => import('./components/Compatibility'))
 import './App.scss'
 import { createGlobalStyle } from 'styled-components'
+import { Container } from './components/common/styledHelpers'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -46,51 +47,51 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/groups/create">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <GroupCreation />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/groups/:id/schedule">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <GroupScheduler />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/groups/:id/submit">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <NewPostForm />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/groups/:id/:pid">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <PostView />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/groups/:id">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <GroupView />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/groups">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <GroupList />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/compatibility">
             <Suspense fallback={<LoadingScreen />}>
-              <div className="mobile-container navbar-offset">
+              <Container>
                 <Compatibility />
-              </div>
+              </Container>
             </Suspense>
           </Route>
           <Route path="/">

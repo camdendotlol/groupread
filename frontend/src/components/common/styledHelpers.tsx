@@ -34,3 +34,12 @@ export const Subtitle = styled.h2`
     font-size: 1.2rem
   }
 `
+
+export const Container = styled.div`
+  margin-left: 10px;
+  margin-right: 10px;
+
+  /* offset for navbar */
+  position: relative;
+  top: 52px;
+`

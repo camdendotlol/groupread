@@ -87,11 +87,6 @@ $navbar-box-shadow-color: #4e4a4a;
   pointer-events: none;
 }
 
-.navbar-offset {
-  position: relative;
-  top: 52px;
-}
-
 .nav-button {
   all: unset;
 }
@@ -211,11 +206,6 @@ $navbar-box-shadow-color: #4e4a4a;
 // By wrapping them all in this special div, we can provide margins
 // on mobile devices.
 @media screen and (max-width: 1023px) {
-  .mobile-container {
-    margin-left: 2vw;
-    margin-right: 2vw;
-  }
-
   .error-sad-face {
     height: 64px;
     width: 64px;
