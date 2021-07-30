@@ -6,6 +6,7 @@ import { newPost } from '../../reducers/groupReducer'
 import { ErrorMessage } from '@hookform/error-message'
 import ErrorPage from '../ErrorPage'
 import { ErrorTypes } from '../../types'
+import LoadingScreen from '../LoadingScreen'
 
 const GroupNewPost: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -22,7 +23,12 @@ const GroupNewPost: React.FC = () => {
     },
   } = useForm()
 
-  const user = useAppSelector(({ user }) => user.data)
+  const userState = useAppSelector(({ user }) => user)
+  const user = userState.data
+
+  if (userState.loading) {
+    return <LoadingScreen />
+  }
 
   if (!user) {
     return (
