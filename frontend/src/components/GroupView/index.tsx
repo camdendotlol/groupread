@@ -116,7 +116,7 @@ const GroupView: React.FC = () => {
   }
 
   const handleLeaveButton = () => {
-    if (user && memberIDs.includes(user.id)) {
+    if (user && memberIDs.includes(user.id) && group.AdminId !== user.id) {
       return <LeaveGroupButton groupID={group.id} />
     }
   }

@@ -214,7 +214,7 @@ const groupSlice = createSlice({
         pending: false,
         groups: state.groups
       }
-    })
+    }),
     builder.addCase(getGroupPosts.pending, (state) => {
       return state = {
         pending: true,
@@ -229,6 +229,12 @@ const groupSlice = createSlice({
         groups: state.groups.map(g => g.id === id ? g = { ...g, posts: posts } : g)
       }
     }),
+    builder.addCase(getGroupPosts.rejected, (state) => {
+      return {
+        pending: false,
+        groups: state.groups
+      }
+    }),
     builder.addCase(getGroupMembers.pending, (state) => {
       return state = {
         pending: true,
@@ -241,6 +247,12 @@ const groupSlice = createSlice({
       return state = {
         pending: false,
         groups: state.groups.map(g => g.id === id ? g = { ...g, members: members } : g)
+      }
+    }),
+    builder.addCase(getGroupMembers.rejected, (state) => {
+      return {
+        pending: false,
+        groups: state.groups
       }
     }),
     builder.addCase(createGroup.pending, (state) => {
