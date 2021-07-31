@@ -122,10 +122,13 @@ const GroupView: React.FC = () => {
   }
 
   return (
-    <div className='container pt-4 pb-4 is-centered'>
+    <div className='is-centered'>
       {handleBanner()}
       {handleLoggedInContent()}
-      <MembersList adminID={group.AdminId} groupMembers={members} />
+      <MembersList
+        adminID={group.AdminId}
+        groupMembers={members}
+      />
       {handleLeaveButton()}
     </div>
   )

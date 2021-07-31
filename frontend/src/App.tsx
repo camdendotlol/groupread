@@ -18,10 +18,6 @@ import { createGlobalStyle } from 'styled-components'
 import { Container } from './components/common/styledHelpers'
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: $family-sans-serif, sans-serif;
-  }
-
   ::selection {
     background: rgba(137, 207, 240, 0.5);
   }
@@ -39,9 +35,8 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Navbar />
-      {/* mobile-container navbar-offset doesn't do anything unless the user on on a small screen,
-      in which case it provides side margins to all content, Unfortunately, it messes up
-      the homepage picture, so we have to wrap each individual component in this div
+      {/* Unfortunately, the Container component messes up
+      the homepage picture, so we have to wrap each individual component in it
       to avoid affecting the homepage. */}
       <main>
         <Switch>

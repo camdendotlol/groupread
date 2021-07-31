@@ -22,6 +22,7 @@ export const Title = styled.h1`
   font-size: 3.5rem;
   line-height: 1.125;
   font-weight: bolder;
+  text-align: center;
 
   @media (max-width: 640px) {
     font-size: 2.5rem
@@ -32,6 +33,7 @@ export const Subtitle = styled.h2`
   font-size: 1.5rem;
   line-height: 1.25;
   font-weight: bold;
+  text-align: center;
 
   @media (max-width: 640px) {
     font-size: 1.2rem
@@ -39,13 +41,24 @@ export const Subtitle = styled.h2`
 `
 
 export const Container = styled.div`
-  margin-left: 10px;
-  margin-right: 10px;
-
+  margin: auto;
+  max-width: 1260px;
+  margin-bottom: 20px;
+  
   /* offset for navbar */
   position: relative;
-  top: 50px;
-  min-height: calc(100vh - 50px);
+  top: 70px;
+  min-height: calc(100vh - 70px);
+  
+  @media (max-width: 1407px) {
+    max-width: 960px;
+  }
+  
+  @media (max-width: 1022px) {
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 100%;
+  }
 `
 
 export const TiledList = styled.div`
@@ -88,4 +101,8 @@ export const ErrorSadFace = styled.img`
     height: 72px;
     width: 72px;
   }
+`
+
+export const CenteredDiv = styled.div`
+  text-align: center;
 `

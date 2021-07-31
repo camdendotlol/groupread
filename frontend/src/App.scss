@@ -120,6 +120,12 @@ $navbar-box-shadow-color: #4e4a4a;
   width: 40px;
 }
 
+.footer {
+  // the footer must be offset due to the container being offset for the navbar
+  position: relative;
+  top: 70px;;
+}
+
 .group-card-image img {
   height: 320px;
   width: 240px;
