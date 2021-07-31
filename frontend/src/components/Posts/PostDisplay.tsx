@@ -7,6 +7,7 @@ import { Post } from '../../types'
 import { useAppSelector } from '../../hooks'
 import ReplyForm from './PostForm'
 import { PostPayloadType } from './PostForm'
+import { PostTypography } from '../common/styledHelpers'
 
 interface Props {
   postObject: Post
@@ -61,7 +62,9 @@ const PostDisplay: React.FC<Props> = ({ postObject }) => {
         />
       )
     } else {
-      return <div className='post-typography' dangerouslySetInnerHTML={{ __html: text }} />
+      return <PostTypography
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
     }
   }
 

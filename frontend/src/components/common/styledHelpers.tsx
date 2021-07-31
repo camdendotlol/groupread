@@ -41,5 +41,48 @@ export const Container = styled.div`
 
   /* offset for navbar */
   position: relative;
-  top: 52px;
+  top: 50px;
+  min-height: calc(100vh - 50px);
+`
+
+export const TiledList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+
+  a {
+    width: 240px;
+  }
+`
+
+export const DropdownList = styled.div`
+  position: absolute;
+  top: 48px;
+  width: 25vw;
+  max-height: 40vh;
+  overflow: auto;
+
+  // avoid some weird behavior from the burger menu
+  z-index: 1000;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+`
+
+// Use system fonts for user-generated content such as posts
+export const PostTypography = styled.div`
+  font-family: system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+`
+
+export const ErrorSadFace = styled.img`
+  height: 128px;
+  width: 128px;
+  margin: 0 auto;
+
+  @media (max-width: 640px) {
+    height: 72px;
+    width: 72px;
+  }
 `

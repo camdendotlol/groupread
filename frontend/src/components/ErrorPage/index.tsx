@@ -1,10 +1,21 @@
 import React from 'react'
 import { ErrorTypes } from '../../types'
 import sadFace from '../../../static/images/sad_face.png'
+import { ErrorSadFace, Subtitle, Title } from '../common/styledHelpers'
+import styled from 'styled-components'
 
 interface Props {
   errorType: ErrorTypes
 }
+
+const ErrorContainer = styled.div`
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`
 
 const ErrorPage: React.FC<Props> = ({ errorType }) => {
   const displayErrorMessage = () => {
@@ -19,21 +30,18 @@ const ErrorPage: React.FC<Props> = ({ errorType }) => {
   }
 
   return (
-    <div className='container pt-4 pb-4'>
-      <div className='error-page content has-text-centered'>
-        <img
-          src={sadFace}
-          alt=""
-          className='error-sad-face'
-        />
-        <h1 className='title'>
-          Oh no!
-        </h1>
-        <h2 className='subtitle'>
-          {displayErrorMessage()}
-        </h2>
-      </div>
-    </div>
+    <ErrorContainer>
+      <ErrorSadFace
+        src={sadFace}
+        alt=""
+      />
+      <Title>
+        Oh no!
+      </Title>
+      <Subtitle>
+        {displayErrorMessage()}
+      </Subtitle>
+    </ErrorContainer>
   )
 }
 

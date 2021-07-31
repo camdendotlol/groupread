@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import GroupCard from './GroupCard'
 import { getPersonalInfo } from '../../reducers/userReducer'
 import { Group } from '../../types'
+import { TiledList } from '../common/styledHelpers'
 
 const GroupList: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -51,7 +52,7 @@ const GroupList: React.FC = () => {
       return (
         <div>
           <h1 className='title'>{ isMember ? 'Your Groups' : 'All Groups' }</h1>
-          <div className='group-list is-5'>
+          <TiledList>
             {groupsToShow.map(group =>
               <Link className='hoverable-item' key={group.id} to={`/groups/${group.id}`}>
                 <GroupCard
@@ -61,7 +62,7 @@ const GroupList: React.FC = () => {
                 />
               </Link>
             )}
-          </div>
+          </TiledList>
         </div>
       )
     }

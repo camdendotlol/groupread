@@ -1,25 +1,33 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import downArrow from '../../../static/svg/angle-down.svg'
 import upArrow from '../../../static/svg/angle-up.svg'
+import { DropdownList } from './styledHelpers'
 
 interface Props {
   label: string,
   content: JSX.Element
 }
 
+const Arrow = styled.img`
+  filter: invert(100%);
+  height: 16px;
+  width: 16px;
+`
+
 const Dropdown: React.FC<Props> = ({ label, content }) => {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false)
 
   const handleArrow = () => (
     dropdownVisible
-      ? <img className='dropdown-arrow' src={upArrow} />
-      : <img className='dropdown-arrow' src={downArrow} />
+      ? <Arrow src={upArrow} />
+      : <Arrow src={downArrow} />
   )
 
   const list = () => (
-    <div className='box dropdown-list' onClick={() => setDropdownVisible(false)}>
+    <DropdownList className='box' onClick={() => setDropdownVisible(false)}>
       {content}
-    </div>
+    </DropdownList>
   )
 
   return (
