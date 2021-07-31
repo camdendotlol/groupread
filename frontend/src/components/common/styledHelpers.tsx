@@ -19,8 +19,9 @@ export const PrettyLink = styled.p`
 `
 
 export const Title = styled.h1`
-  font-size: 4rem;
-  line-height: 90%;
+  font-size: 3.5rem;
+  line-height: 1.125;
+  font-weight: bolder;
 
   @media (max-width: 640px) {
     font-size: 2.5rem
@@ -28,7 +29,9 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.h2`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: bold;
 
   @media (max-width: 640px) {
     font-size: 1.2rem
