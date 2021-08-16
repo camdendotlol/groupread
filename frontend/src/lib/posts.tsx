@@ -17,8 +17,7 @@ export const parseMarkdown = async (text: string): Promise<string> => {
 export const getDisplayName = (userID: string, groupMembers: Array<User>): string => {
   const userMatch = groupMembers.find(m => m.id === userID)
 
-  // This condition should never fire, but that will change if the ability to leave groups is added
-  // see https://github.com/mythmakerseven/groupread/issues/44
+  // This condition should never fire, but let's include this just in case!
   if (!userMatch) return 'unknown'
 
   return userMatch.displayName
