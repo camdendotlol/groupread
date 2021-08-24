@@ -35,10 +35,7 @@ const config = {
       },
       {
         test: /\.(png|jpg|gif|svg|eot|ttf|webp|woff|woff2)$/,
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 10000,
-        },
+        type: 'asset/resource'
       }
     ],
   },
@@ -49,12 +46,11 @@ const config = {
     proxy: {
       '/api': `http://localhost:${process.env.PORT}`
     },
-    contentBase: path.resolve(__dirname, 'build'),
-    compress: true,
+    static: {
+      directory: path.resolve(__dirname, 'build')
+    },
     port: 3001,
-    publicPath: '/',
-    historyApiFallback: { index: 'index.html' },
-    inline: true
+    historyApiFallback: { index: 'index.html' }
   },
   devtool: 'source-map',
   node: { __dirname: true },
