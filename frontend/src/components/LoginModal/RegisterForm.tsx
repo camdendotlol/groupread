@@ -49,6 +49,7 @@ const RegisterForm: React.FC<Props> = ({ setOpen }) => {
               className='input'
               type='text'
               placeholder='username'
+              id='register-username'
               {...register('username', {
                 required:
                 {
@@ -70,6 +71,7 @@ const RegisterForm: React.FC<Props> = ({ setOpen }) => {
               className='input'
               type='text'
               placeholder='My Name'
+              id='register-display-name'
               {...register('displayName', {
                 required:
                 {
@@ -91,6 +93,7 @@ const RegisterForm: React.FC<Props> = ({ setOpen }) => {
               className='input'
               type='password'
               placeholder='&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;'
+              id='register-password'
               {...register('password', {
                 required:
                 {
@@ -113,6 +116,7 @@ const RegisterForm: React.FC<Props> = ({ setOpen }) => {
               className='input'
               type='email'
               placeholder='you@example.com'
+              id='register-email'
               {...register('email', {
                 required:
                 {
@@ -122,7 +126,13 @@ const RegisterForm: React.FC<Props> = ({ setOpen }) => {
               })} />
           </div>
         </div>
-        <button className='button is-success' type="submit">Register</button>
+        <button
+          className='button is-success'
+          type='submit'
+          id='register-submit-button'
+        >
+          Register
+        </button>
       </form>
     )
   )

@@ -5,7 +5,9 @@ let sequelize: Sequelize
 
 const getPool = (): Sequelize => {
   if (sequelize) return sequelize
+
   sequelize = new Sequelize(config.DB_URL)
+
   return sequelize
 }
 

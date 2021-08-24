@@ -10,6 +10,7 @@ import usersRouter from './controllers/users'
 import groupsRouter from './controllers/groups'
 import loginRouter from './controllers/login'
 import postsRouter from './controllers/posts'
+import testingRouter from './controllers/testing'
 
 app.use(express.json())
 app.use(cors())
@@ -20,6 +21,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/groups', groupsRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/posts', postsRouter)
+app.use('/api/testing', testingRouter)
 
 const db = getPool()
 

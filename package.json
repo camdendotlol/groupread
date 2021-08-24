@@ -15,7 +15,8 @@
     "analyze": "source-map-explorer 'build/main.js'",
     "build:server": "yarn tsc --build server/tsconfig.json",
     "build:ui": "webpack --mode=production",
-    "start:full": "yarn build:server && yarn build:ui && yarn start"
+    "build": "yarn build:server && yarn build:ui",
+    "start:full": "yarn build && yarn start"
   },
   "author": "Camden Mecklem",
   "license": "AGPL-3.0-or-later",

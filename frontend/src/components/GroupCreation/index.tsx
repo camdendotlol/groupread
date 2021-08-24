@@ -122,6 +122,7 @@ const CreateGroup: React.FC = () => {
               className='input'
               type='text'
               placeholder='e.g. The Brothers Karamazov'
+              id='group-creation-title'
               {...register('bookTitle', {
                 required: {
                   value: true,
@@ -143,6 +144,7 @@ const CreateGroup: React.FC = () => {
               className='input'
               type='text'
               placeholder='e.g. Fyodor Dostoyevsky'
+              id='group-creation-author'
               {...register('bookAuthor')}
               defaultValue={
                 groupFormData.bookAuthor
@@ -160,6 +162,7 @@ const CreateGroup: React.FC = () => {
               className='input'
               type='text'
               placeholder='e.g. 1880'
+              id='group-creation-year'
               {...register('bookYear', {
                 pattern: {
                   value: /^\d{4}$/,
@@ -182,6 +185,7 @@ const CreateGroup: React.FC = () => {
               className='input'
               type='text'
               placeholder='e.g. 9780374528379'
+              id='group-creation-isbn'
               {...register('bookIsbn', {
                 // TODO: replace with regex pattern to more specifically enforce length
                 minLength: {
@@ -211,6 +215,7 @@ const CreateGroup: React.FC = () => {
               min='1'
               max='100000'
               placeholder='e.g. 776'
+              id='group-creation-page-count'
               {...register('bookPageCount', {
                 required: {
                   value: true,
@@ -224,8 +229,21 @@ const CreateGroup: React.FC = () => {
           </div>
         </div>
         <div className='buttons'>
-          <button className='button is-info' type='button' onClick={() => setModalOpen(true)}>Find info</button>
-          <button className='button is-success' type='submit'>Create Group</button>
+          <button
+            className='button is-info'
+            type='button'
+            id='group-creation-find-info-button'
+            onClick={() => setModalOpen(true)}
+          >
+            Find info
+          </button>
+          <button
+            className='button is-success'
+            type='submit'
+            id='group-creation-submit-button'
+          >
+            Create Group
+          </button>
         </div>
         <OpenLibraryResults
           queryTitle={queryTitle}

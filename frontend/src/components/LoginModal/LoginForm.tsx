@@ -46,6 +46,7 @@ const LoginForm: React.FC<Props> = ({ setOpen }) => {
             className='input'
             type='text'
             placeholder='username'
+            id='login-username'
             {...register('username', {
               required:
               {
@@ -67,6 +68,7 @@ const LoginForm: React.FC<Props> = ({ setOpen }) => {
             className='input'
             type='password'
             placeholder='&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;'
+            id='login-password'
             {...register('password', {
               required:
               {
@@ -81,7 +83,13 @@ const LoginForm: React.FC<Props> = ({ setOpen }) => {
             })} />
         </div>
       </div>
-      <button className='button is-success' type="submit">Log In</button>
+      <button
+        className='button is-success'
+        type='submit'
+        id='login-submit-button'
+      >
+        Log In
+      </button>
     </form>
   )
 }

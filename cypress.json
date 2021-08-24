@@ -6,5 +6,7 @@
   "pluginsFile": "frontend/cypress/plugins/index.ts",
   "screenshotsFolder": "frontend/cypress/screenshots",
   "videosFolder": "frontend/cypress/videos",
-  "supportFile": "frontend/cypress/support/index.ts"
+  "supportFile": "frontend/cypress/support/index.ts",
+  "viewportWidth": 1400,
+  "viewportHeight": 900
 }

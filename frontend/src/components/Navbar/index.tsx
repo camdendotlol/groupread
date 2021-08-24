@@ -41,13 +41,21 @@ const Navbar: React.FC = () => {
     <nav id='navbar' className={styles} role='navigation' aria-label='main navigation'>
       <div className='container'>
         <div className='navbar-brand'>
-          <Link id='nav-home-link' className='navbar-item' to='/'>
+          <Link
+            id='nav-home-link'
+            className='navbar-item'
+            to='/'
+          >
             <Logo size={'26px'} />
             &nbsp;
             Home
           </Link>
           <GroupDropdown />
-          <a role='button' className={checkIfActive('navbar-burger')} onClick={() => setMenuVisible(!menuVisible)} aria-label='menu' aria-expanded='false' data-target='navMenu'>
+          <a
+            role='button'
+            className={checkIfActive('navbar-burger')}
+            onClick={() => setMenuVisible(!menuVisible)} aria-label='menu' aria-expanded='false' data-target='navMenu'
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>

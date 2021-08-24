@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
       return null
     } else {
       return (
-        <LoginButton>
+        <LoginButton id='homepage-login-button'>
           <LoginModal open={loginModalOpen} setOpen={setLoginModalOpen} />
           <PrettyLink onClick={() => setLoginModalOpen(true)}>Log in or Register</PrettyLink>
         </LoginButton>
