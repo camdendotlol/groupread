@@ -28,8 +28,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           SECRET: ${{ secrets.SECRET }}
         run: npm run test:jest
-      - name: component testing
-        run: npm run test:component
       - name: end-to-end testing
         uses: cypress-io/github-action@v2
         env:
