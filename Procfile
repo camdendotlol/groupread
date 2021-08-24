@@ -1,1 +1,1 @@
-web: yarn start:full
+web: npm start:full
