@@ -20,7 +20,7 @@ A demo server is available at [https://gr.camdenmecklem.com/](https://gr.camdenm
 
 To self-host, you will need:
 
-- [The Yarn package manager](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 
 - A database of any kind supported by [Sequelize](https://sequelize.org/)
 
@@ -28,7 +28,9 @@ To begin, ``git clone`` the repo into your desired location. This repository inc
 
 Groupread uses the Sequelize ORM, which supports Postgres, MySQL, MariaDB, SQLite, and Microsoft SQL Server, but requires a driver package for the chosen database. By default, Groupread includes the ``pg`` and ``pg-hstore`` packages for Postgres support. If you wish to connect to another database from the list, you must add the required driver ([detailed here](https://sequelize.org/master/manual/getting-started.html#installing)) to ``package.json``.
 
-Now you can run ``yarn install`` to install dependencies.
+Now you can run ``npm install`` to install dependencies.
+
+Generate a fresh build of Groupread with `npm run build`, which places the compiled JS files in `./build`.
 
 The server expects the following environment variables:
 
@@ -40,23 +42,21 @@ The server expects the following environment variables:
 
 - **PORT**: the port on which the server will run.
 
-Before launching, you might want to run the test suite to make sure everything works. ``yarn test:jest`` will run the backend unit tests, and ``yarn test:component`` will run frontend component tests.
+Before launching, you might want to run the test suite to make sure everything works. ``npm run test:jest`` will run the backend unit tests.
 
-To run end-to-end tests, first make sure the server and backend are built with `yarn build:server` and `yarn build:ui`. Then start a test version of Groupread with `yarn start:cypress`. In another terminal, use `yarn test:e2e` to run the end-to-end tests.
+To run end-to-end tests, start Groupread in testing mode with `npm run start:cypress`. In another terminal, use `npm run test:e2e` to run the end-to-end tests.
 
-Note that test coverage is not great right now, with the frontend tests in particular being a work in progress.
-
-Now you can run ``yarn start:full`` to build and serve a production-ready app. The site will be hosted locally, e.g. at [http://localhost:3000/](http://localhost:3000/) if you set ``PORT`` to 3000.
+Now you can run ``npm start`` to serve a production-ready app. The site will be hosted locally, e.g. at [http://localhost:3000/](http://localhost:3000/) if you set ``PORT`` to 3000.
 
 ## Contributing
 
 This project welcomes contributions.
 
-You can host a live server on your local machine to make development easier. After cloning the repo and running ``yarn install``, start the development backend server with ``yarn dev:server`` and the frontend development server with ``yarn dev:ui``. The frontend will be served at [http://localhost:3001/](http://localhost:3001/).
+You can host a live server on your local machine to make development easier. After cloning the repo and running ``npm install``, start the development backend server with ``npm run dev:server`` and the frontend development server with ``npm run dev:ui``. The frontend will be served at [http://localhost:3001/](http://localhost:3001/).
 
 If you plan to work on new functionality, please file an issue first so no one duplicates your efforts.
 
-Before submitting a pull request, make sure to lint your code with ``yarn lint`` and test with the relevant testing commands. Code style isn't very strict right now beyond the basic linting rules, although more stringency might be enforced in the future.
+Before submitting a pull request, make sure to lint your code with ``npm run lint`` and test with the relevant testing commands. Code style isn't very strict right now beyond the basic linting rules, although more stringency might be enforced in the future.
 
 All contributions are licensed under the [GNU Affero General Public License v3.0](https://github.com/mythmakerseven/groupread/blob/main/LICENSE).
 

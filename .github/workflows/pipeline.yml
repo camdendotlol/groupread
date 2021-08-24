@@ -16,22 +16,20 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: yarn install
-        run: yarn install
+      - name: npm install
+        run: npm install
       - name: lint
-        run: yarn lint
-      - name: build backend
-        run: yarn build:server
-      - name: build frontend
-        run: yarn build:ui
+        run: npm run lint
+      - name: build
+        run: npm run build
       - name: jest testing
         env:
           TEST_DB_URL: ${{ secrets.TEST_DB_URL }}
           PORT: ${{ secrets.PORT }}
           SECRET: ${{ secrets.SECRET }}
-        run: yarn test:jest
+        run: npm run test:jest
       - name: component testing
-        run: yarn test:component
+        run: npm run test:component
       - name: end-to-end testing
         uses: cypress-io/github-action@v2
         env:
@@ -39,10 +37,9 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
           PORT: ${{ secrets.PORT }}
         with:
-          install-command: yarn --immutable --silent
           env: true
-          command: yarn test:e2e
-          start: yarn start:cypress
+          command: npm run test:e2e
+          start: npm run start:cypress
           wait-on: http://localhost:3000
       - name: install doctl (digitalocean deployment tool)
         uses: digitalocean/action-doctl@v2
