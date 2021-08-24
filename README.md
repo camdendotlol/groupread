@@ -70,7 +70,7 @@ All contributions are licensed under the [GNU Affero General Public License v3.0
 
   - remove posts
 
-- proper frontend testing with Cypress (current status: cypress is fully set up for component testing and end-to-end testing, and is just waiting for tests to be written) ⭐⭐⭐
+- proper frontend testing with Cypress (current status: cypress is fully set up for end-to-end testing with some tests written, but coverage is lacking) ⭐⭐⭐
 
 - basic user profile pages, nothing fancy (current status: an API call to fetch your own info is implemented, it should be simple to write another one for getting other users' info with some personal data removed) ⭐⭐
 
@@ -108,4 +108,4 @@ On the frontend, I tried out the up-and-coming Bulma CSS framework, which I've f
 
 I also chose not to use create-react-app, if only to learn more about the internal workings of packaging web applications. This move had surprisingly few drawbacks - maybe five or six hours of total time configuring and troubleshooting with webpack and eslint. In the future I'll probably go with create-react-app again, because there also hasn't been much benefit in dropping it. It has been good to learn more about what create-react-app is doing in the background, anyway.
 
-When I began working on Groupread, I had no significant experience with TypeScript. Since then, I've become much more comfortable working with it, so I use it for new code and I'm gradually adding making use of TypeScript features for old code. Types should strengthen data validation and simplify the backend code. I've already caught frontend bugs thanks to TypeScript error messages.
+When I began working on Groupread, I had no significant experience with TypeScript. Since then, I've become much more comfortable working with it, so I use it for new code and I'm gradually adding making use of TypeScript features for old code. Types should strengthen data validation and simplify the backend code. I've already caught frontend bugs thanks to TypeScript's strict null checks.
