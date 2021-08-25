@@ -58,7 +58,7 @@ const GroupView: React.FC = () => {
     }
   }, [id, user])
 
-  if (groupState.pending || userState.loading) {
+  if (groupState.pending.details || userState.loading) {
     return <LoadingScreen />
   }
 
