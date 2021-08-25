@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { useParams, useHistory } from 'react-router-dom'
 import { getGroupDetails, getGroupMembers, getGroupPosts } from '../../reducers/groupReducer'
@@ -9,7 +9,6 @@ import dayjs from 'dayjs'
 dayjs.extend(relativeTime)
 import relativeTime from 'dayjs/plugin/relativeTime'
 import {
-  Group,
   User,
   ErrorTypes
 } from '../../types'
@@ -18,6 +17,12 @@ import LoadingScreen from '../LoadingScreen'
 import ErrorPage from '../ErrorPage'
 
 const GroupView: React.FC = () => {
+  // This local state item keeps track of whether the component is still querying
+  // the server for group information. We already track some info in state, but the
+  // caching solution we use means that an error message flashes briefly before the
+  // async query begins. Really annoying! The GR codebase is really showing its age. 😥
+  const [loading, setLoading] = useState<boolean>(true)
+
   const { id } = useParams<{ id: string }>()
 
   const dispatch = useAppDispatch()
@@ -28,10 +33,9 @@ const GroupView: React.FC = () => {
   const groupState = useAppSelector(({ group }) => group)
   const groups = groupState.groups
 
-  // See if the group exists in the cache
-  const groupQuery = groups.find(group => group.id === id)
+  // See if the group exists in the redux store
+  const group = groups.find(group => group.id === id)
 
-  // Set these up so they can be filled in later if applicable
   let members: Array<User> = []
   let memberIDs: Array<string> = []
 
@@ -43,6 +47,7 @@ const GroupView: React.FC = () => {
     const getInfo = async () => {
       await dispatch(getGroupDetails(id))
       await dispatch(getGroupMembers(id))
+      setLoading(false)
     }
 
     getInfo()
@@ -58,24 +63,19 @@ const GroupView: React.FC = () => {
     }
   }, [id, user])
 
-  if (groupState.pending.details || groupState.pending.members || userState.loading) {
+  if (loading || userState.loading) {
     return <LoadingScreen />
   }
 
   // Now we can have a properly typed group object with
   // the possibility of being undefined out of the way
-  if (!groupQuery) {
+  if (!group) {
     return <ErrorPage errorType={ErrorTypes.NotFound} />
   }
-  const group: Group = groupQuery
 
   // Fill in the members list
   members = group.members ? group.members : []
   memberIDs = members.map(m => m.id)
-
-  if (group.id !== id || !members) {
-    return <LoadingScreen />
-  }
 
   const handlePostButton = () => {
     if (!user) return null
@@ -83,8 +83,11 @@ const GroupView: React.FC = () => {
     if (!memberIDs.includes(user.id)) return null
 
     return (
-      <button className='button is-primary level-item' onClick={() => history.push(`/groups/${group.id}/submit`)}>
-          New Post
+      <button
+        className='button is-primary level-item'
+        onClick={() => history.push(`/groups/${group.id}/submit`)}
+      >
+        New Post
       </button>
     )
   }

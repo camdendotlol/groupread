@@ -47,7 +47,7 @@ const config = {
       '/api': `http://localhost:${process.env.PORT}`
     },
     static: {
-      directory: path.resolve(__dirname, 'build')
+      directory: path.resolve(__dirname, 'build', 'frontend')
     },
     port: 3001,
     historyApiFallback: { index: 'index.html' }
