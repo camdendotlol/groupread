@@ -25,9 +25,13 @@ const PostView: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(getGroupDetails(id))
-    dispatch(getGroupPosts(id))
-    dispatch(getGroupMembers(id))
+    const getInfo = async () => {
+      await dispatch(getGroupDetails(id))
+      await dispatch(getGroupPosts(id))
+      await dispatch(getGroupMembers(id))
+    }
+
+    getInfo()
   }, [id])
 
   const userState = useAppSelector(({ user }) => user)

@@ -8,6 +8,7 @@ import { useAppSelector } from '../../hooks'
 import ReplyForm from './PostForm'
 import { PostPayloadType } from './PostForm'
 import { PostTypography } from '../common/styledHelpers'
+import LoadingScreen from '../LoadingScreen'
 
 interface Props {
   postObject: Post
@@ -34,7 +35,7 @@ const PostDisplay: React.FC<Props> = ({ postObject }) => {
   }, [postObject])
 
 
-  if (!user) return <p>Loading...</p>
+  if (!user) return <LoadingScreen />
 
   const handleEditButton = (authorID: string) => {
     if (authorID === user.id) {

@@ -1,6 +1,7 @@
 import path from 'path'
 import dotenv from 'dotenv'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import webpack from 'webpack'
 
 dotenv.config()
 
@@ -11,7 +12,12 @@ const config = {
     path: path.resolve(__dirname, 'build', 'frontend'),
     chunkFilename: '[id].chunk.js'
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
+    })
+  ],
   module: {
     rules: [
       {
