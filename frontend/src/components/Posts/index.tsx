@@ -9,7 +9,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 import {
-  ErrorTypes
+  ErrorTypes, Post
 } from '../../types'
 
 import { PostPayloadType } from './PostForm'
@@ -26,20 +26,14 @@ const PostView: React.FC = () => {
 
   useEffect(() => {
     dispatch(getGroupDetails(id))
-  }, [id])
-
-  useEffect(() => {
     dispatch(getGroupPosts(id))
-  }, [id])
-
-  useEffect(() => {
     dispatch(getGroupMembers(id))
   }, [id])
 
   const userState = useAppSelector(({ user }) => user)
   const user = userState.data
-  const groups = useAppSelector(({ group }) => group.groups)
-  const group = groups.find(group => group.id === id)
+  const groupState = useAppSelector(({ group }) => group)
+  const group = groupState.groups.find(group => group.id === id)
 
   if (!user && !userState.loading) {
     return (
@@ -47,13 +41,19 @@ const PostView: React.FC = () => {
     )
   }
 
-  if (!group || !group.posts || !group.members) {
+  if (groupState.pending.details || groupState.pending.posts || groupState.pending.members) {
     return (
       <LoadingScreen />
     )
   }
 
-  const post = group.posts.find(post => post.id === pid)
+  if (!group) {
+    return (
+      <ErrorPage errorType={ErrorTypes.NotFound} />
+    )
+  }
+
+  const post = group.posts.find((post: Post) => post.id === pid)
 
   if (!post) {
     return (
@@ -64,7 +64,7 @@ const PostView: React.FC = () => {
   const displayReplies = () => {
     // Check if there are any replies first
     if (post.replies && post.replies.length > 0) {
-      return post.replies.map(reply =>
+      return post.replies.map((reply: Post) =>
         <PostDisplay key={reply.id} postObject={reply} />
       )
     } else {
