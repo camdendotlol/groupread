@@ -11,12 +11,12 @@ const server = http.createServer(app)
 // now let's handle everything else
 
 // Handle static files from the /build folder
-app.use(express.static(path.join(__dirname, '..')))
+app.use(express.static(path.join(__dirname, '..', 'frontend')))
 
 // Groupread uses react-router, so we need to redirect direct
 // links to index.html and then react-router can handle the path
 app.get('/*', (req, res) => {
-  return res.sendFile(path.join(__dirname, '..', 'index.html'))
+  return res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'))
 })
 
 server.listen(config.PORT, () => {

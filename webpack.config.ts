@@ -8,7 +8,7 @@ const config = {
   entry: './frontend/src/index.tsx',
   output: {
     publicPath: '/',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build', 'frontend'),
     chunkFilename: '[id].chunk.js'
   },
   plugins: [new MiniCssExtractPlugin()],
