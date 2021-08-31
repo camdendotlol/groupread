@@ -84,7 +84,8 @@ groupsRouter.post('/', async (req: RequestWithToken, res: Response) => {
   let tokenID
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
@@ -159,7 +160,8 @@ groupsRouter.post('/join/:group', async (req: RequestWithToken, res) => {
   let tokenID
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
@@ -181,7 +183,8 @@ groupsRouter.post('/leave/:group', async (req: RequestWithToken, res) => {
   let tokenID
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
@@ -208,7 +211,8 @@ groupsRouter.post('/schedule/:group', async (req: RequestWithToken, res: express
   let tokenID
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 

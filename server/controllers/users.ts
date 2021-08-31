@@ -97,7 +97,8 @@ usersRouter.get('/info/:id', async (req: RequestWithToken, res) => {
   let tokenID: string
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
@@ -106,7 +107,8 @@ usersRouter.get('/info/:id', async (req: RequestWithToken, res) => {
   let user: User
   try {
     user = await getCurrentUserInfo(req.params.id, tokenID)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(e.status).json({ error: `${e.message}` })
   }
 
@@ -124,7 +126,8 @@ usersRouter.post('/validate', async (req: RequestWithToken, res) => {
   let tokenID
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 

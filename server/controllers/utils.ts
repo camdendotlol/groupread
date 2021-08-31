@@ -12,7 +12,8 @@ export const checkToken = (token: string | undefined): string => {
   let decodedToken
   try {
     decodedToken = jwt.verify(token, config.SECRET_TOKEN_KEY)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     if (e.name === 'TokenExpiredError') {
       throw new Error('Expired token, please sign in again')
     } else {
@@ -84,8 +85,8 @@ export const organizePosts = (posts: PostObject[]): PostObject[] => {
 
   // Sort the posts into a hierarchical object with replies as children, etc
   const parentsWithReplies = sortedParents.map((post: PostObject) => post = {
-    replies: sortByDate(posts.filter((childPost) => childPost.parent === post.id), true),
-    ...post
+    ...post,
+    replies: sortByDate(posts.filter((childPost) => childPost.parent === post.id), true)
   })
   return parentsWithReplies
 }

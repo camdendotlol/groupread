@@ -23,7 +23,8 @@ postsRouter.post('/:group', async (req: RequestWithToken, res) => {
   let tokenID: string
   try {
     tokenID = checkToken(token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
@@ -105,7 +106,8 @@ postsRouter.put('/edit/:id', async (req: RequestWithToken, res) => {
   let tokenID
   try {
     tokenID = checkToken(req.token)
-  } catch(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch(e: any) {
     return res.status(400).json({ error: `${e.message}` })
   }
 
