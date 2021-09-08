@@ -12,7 +12,7 @@ const groupsRouter = express.Router()
 
 // Get list of groups
 groupsRouter.get('/all', async (req, res) => {
-  const groups = await Group.findAll()
+  const groups = await Group.findAll({ order: [[ 'createdAt', 'DESC' ]] })
 
   return res.status(200).json(groups)
 })
