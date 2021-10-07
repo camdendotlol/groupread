@@ -11,7 +11,7 @@
     "start:cypress": "NODE_ENV=test npm start",
     "test:e2e": "cypress run",
     "lint": "eslint .",
-    "analyze": "source-map-explorer 'build/main.js'",
+    "analyze": "source-map-explorer 'build/frontend/main.js'",
     "build:server": "tsc --build server/tsconfig.json",
     "build:ui": "webpack --mode=production",
     "build": "npm run build:server && npm run build:ui",
