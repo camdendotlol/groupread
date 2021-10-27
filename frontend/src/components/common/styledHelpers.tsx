@@ -75,12 +75,13 @@ export const TiledList = styled.div`
 export const DropdownList = styled.div`
   position: absolute;
   top: 48px;
-  width: 25vw;
-  max-height: 40vh;
+  width: 400px;
+  max-height: 600px;
   overflow: auto;
 
-  // avoid some weird behavior from the burger menu
-  z-index: 1000;
+  ul a:hover, ul a:focus {
+    background: none;
+  }
 
   @media (max-width: 640px) {
     width: 100%;

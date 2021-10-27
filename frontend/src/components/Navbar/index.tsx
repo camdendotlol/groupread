@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import LoginButton from './LoginButton'
+import LoggedInButtons from './LoggedInButtons'
 import GroupDropdown from './GroupDropdown'
 import Logo from '../common/Logo'
+import MobileSidebar from './MobileSidebar'
+import { NavbarDiv } from './styledcomponents'
+import { List } from 'react-bootstrap-icons'
 
 const Navbar: React.FC = () => {
-  const [menuVisible, setMenuVisible] = useState(false)
+  // Assume the navbar is hidden by default
+  // If the user loads straight into a page other than the homepage,
+  // we get a nice fade-in effect anyway.
+  const [navbarHidden, setNavbarHidden] = useState(true)
+
+  // Determines whether the user has scrolled down from the top.
   const [scrolled, setScrolled] = useState(false)
-  const [styles, setStyles] = useState('navbar has-shadow is-fixed-top navbar-hidden')
+
+  // Determines whether the sidebar is visible (only relevant on mobile displays)
+  const [sidebarVisible, setSidebarVisible] = useState<boolean>(false)
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -23,51 +33,53 @@ const Navbar: React.FC = () => {
   // but it should be visible in every other situation
   useEffect(() => {
     if (location.pathname === '/' && !scrolled) {
-      setStyles('navbar has-shadow is-fixed-top navbar-hidden')
+      setNavbarHidden(true)
     } else {
-      setStyles('navbar has-shadow is-fixed-top')
+      setNavbarHidden(false)
     }
   }, [scrolled, location.pathname])
 
   window.addEventListener('scroll', handleScroll)
 
-  const checkIfActive = (base: string) => {
-    return menuVisible
-      ? `${base} is-active`
-      : base
-  }
-
   return (
-    <nav id='navbar' className={styles} role='navigation' aria-label='main navigation'>
-      <div className='container'>
-        <div className='navbar-brand'>
-          <Link
-            id='nav-home-link'
-            className='navbar-item'
-            to='/'
-          >
-            <Logo size={'26px'} />
-            &nbsp;
-            Home
-          </Link>
-          <GroupDropdown />
-          <a
-            role='button'
-            className={checkIfActive('navbar-burger')}
-            onClick={() => setMenuVisible(!menuVisible)} aria-label='menu' aria-expanded='false' data-target='navMenu'
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div className={checkIfActive('navbar-menu')} id='navMenu'>
-          <div className='navbar-end'>
-            <LoginButton />
+    <>
+      <MobileSidebar
+        showSidebar={sidebarVisible}
+        setShowSidebar={setSidebarVisible}
+      />
+      <NavbarDiv
+        id='navbar'
+        role='navigation'
+        aria-label='main navigation'
+        className={navbarHidden ? 'hidden' : ''}
+      >
+        <div className='container'>
+          <div className='navbar-brand'>
+            <Link
+              id='nav-home-link'
+              to='/'
+            >
+              <Logo size={'26px'} />
+              &nbsp;
+              Home
+            </Link>
+            <GroupDropdown />
+          </div>
+          <div className='left-menu'>
+            <LoggedInButtons />
+          </div>
+          <div className='burger'>
+            <a
+              role='button'
+              className='navbar-burger'
+              onClick={() => setSidebarVisible(!sidebarVisible)} aria-label='menu' aria-expanded='false' data-target='navMenu'
+            >
+              <List size={40} />
+            </a>
           </div>
         </div>
-      </div>
-    </nav>
+      </NavbarDiv>
+    </>
   )
 }
 

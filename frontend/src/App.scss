@@ -69,7 +69,6 @@ $navbar-box-shadow-color: #4e4a4a;
 @import 'bulma/sass/components/level.sass';
 @import 'bulma/sass/components/media.sass';
 @import 'bulma/sass/components/modal.sass';
-@import 'bulma/sass/components/navbar.sass';
 @import 'bulma/sass/components/tabs.sass';
 @import 'bulma/sass/components/panel.sass';
 
@@ -78,24 +77,9 @@ $navbar-box-shadow-color: #4e4a4a;
 
 // Custom styles below
 
-.navbar {
-  transition: 0.2s ease-in;
-  height: 50px;
-}
-
-.navbar-hidden {
+.hidden {
   opacity: 0;
   pointer-events: none;
-}
-
-.nav-button {
-  all: unset;
-}
-
-// For some reason Bulma doesn't apply normal navbar-item styles to items
-// within a navbar-brand element, so we have to force it.
-.navbar-brand .navbar-item:hover, .navbar-brand .navbar-item:focus {
-  background: #757763 !important;
 }
 
 .dropdown-group-item {
@@ -108,6 +92,10 @@ $navbar-box-shadow-color: #4e4a4a;
   height: 60px;
 }
 
+.dropdown-group-item {
+  color: black;
+}
+
 .dropdown-group-item img {
   height: 60px;
 }
@@ -118,12 +106,6 @@ $navbar-box-shadow-color: #4e4a4a;
 
 .dropdown-group-item :nth-child(1) {
   width: 40px;
-}
-
-.footer {
-  // the footer must be offset due to the container being offset for the navbar
-  position: relative;
-  top: 70px;;
 }
 
 .group-card-image img {

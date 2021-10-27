@@ -4,7 +4,7 @@ import { logOutUser } from '../../reducers/userReducer'
 import { Link } from 'react-router-dom'
 import LoginModal from '../LoginModal'
 
-const LoginButton: React.FC = () => {
+const LoggedInButtons: React.FC = () => {
   const [openModal, setOpenModal] = useState(false)
 
   const user = useAppSelector(({ user }) => user.data)
@@ -65,4 +65,4 @@ const LoginButton: React.FC = () => {
   }
 }
 
-export default LoginButton
+export default LoggedInButtons

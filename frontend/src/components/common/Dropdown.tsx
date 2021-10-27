@@ -13,6 +13,12 @@ const Arrow = styled.img`
   filter: invert(100%);
   height: 16px;
   width: 16px;
+  align-self: center;
+`
+
+const DropdownButton = styled.a`
+  display: inline-flex;
+  align-items: center;
 `
 
 const Dropdown: React.FC<Props> = ({ label, content }) => {
@@ -32,13 +38,13 @@ const Dropdown: React.FC<Props> = ({ label, content }) => {
 
   return (
     <>
-      <a
+      <DropdownButton
         role='button'
         className='navbar-item'
         onClick={() => setDropdownVisible(!dropdownVisible)}
       >
         {label}&#8200;{handleArrow()}
-      </a>
+      </DropdownButton>
       {dropdownVisible ? list() : null}
     </>
   )

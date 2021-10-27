@@ -1,7 +1,6 @@
 import path from 'path'
 import dotenv from 'dotenv'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import webpack from 'webpack'
 
 dotenv.config()
 
@@ -14,9 +13,6 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new webpack.ProvidePlugin({
-      process: 'process/browser'
-    })
   ],
   module: {
     rules: [
@@ -46,7 +42,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.js']
+    extensions: ['.tsx', '.ts', '.js']
   },
   devServer: {
     proxy: {

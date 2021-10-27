@@ -14,14 +14,8 @@ const PostView = React.lazy(() => import('./components/Posts'))
 const GroupScheduler = React.lazy(() => import('./components/GroupScheduler'))
 const Compatibility = React.lazy(() => import('./components/Compatibility'))
 import './App.scss'
-import { createGlobalStyle } from 'styled-components'
 import { Container } from './components/common/styledHelpers'
-
-const GlobalStyle = createGlobalStyle`
-  ::selection {
-    background: rgba(137, 207, 240, 0.5);
-  }
-`
+import GlobalStyle from './globalStyles'
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch()
