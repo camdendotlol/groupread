@@ -54,7 +54,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
-    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.14.5",
     "@cypress/react": "^5.9.4",
     "@types/bcrypt": "^5.0.0",
