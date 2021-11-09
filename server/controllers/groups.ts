@@ -79,8 +79,6 @@ groupsRouter.post('/', async (req: RequestWithToken, res: Response) => {
   const token = req.token
   const body = req.body
 
-  logger.info(`Received POST request:\n ${body}`)
-
   let tokenID
   try {
     tokenID = checkToken(token)
@@ -135,6 +133,8 @@ groupsRouter.post('/', async (req: RequestWithToken, res: Response) => {
       .status(400)
       .json({ error: 'Page count must be a number' })
   }
+
+  logger.info(`User ${user.id} created a new group about ${body.bookTitle}`)
 
   const group = await Group.create({
     id: uuidv4(),

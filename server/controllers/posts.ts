@@ -12,7 +12,6 @@ const postsRouter = express.Router()
 // Create a post
 postsRouter.post('/:group', async (req: RequestWithToken, res) => {
   const body = req.body
-  logger.info(`Received POST request:\n ${body}`)
 
   const token = req.token
 
@@ -81,6 +80,8 @@ postsRouter.post('/:group', async (req: RequestWithToken, res) => {
     })
   }
 
+  logger.info(`User ${sanitizedUser.id} added a post to group ${group.id}`)
+
   await post.save()
 
   const jsonPost = post.toJSON()
@@ -97,7 +98,6 @@ postsRouter.put('/edit/:id', async (req: RequestWithToken, res) => {
   // new post body = body.text
 
   const body = req.body
-  logger.info(`Received PUT request:\n ${body}`)
 
   if (!body.text) {
     return res.status(400).json({ error: 'Post content cannot be empty' })
@@ -124,6 +124,8 @@ postsRouter.put('/edit/:id', async (req: RequestWithToken, res) => {
   // Add the new stuff
   post.text = body.text
   post.updatedAt = new Date()
+
+  logger.info(`User ${user.id} edited their post ${post.id}`)
 
   await post.save()
 
