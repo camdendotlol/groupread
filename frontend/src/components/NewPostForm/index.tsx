@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { newPost } from '../../reducers/groupReducer'
@@ -11,7 +11,7 @@ import LoadingScreen from '../LoadingScreen'
 const GroupNewPost: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const dispatch = useAppDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -47,7 +47,7 @@ const GroupNewPost: React.FC = () => {
         id: id,
         postObject: postObject
       }))
-      history.push(`/groups/${id}`)
+      navigate(`/groups/${id}`)
     } catch(e) {
       return setError('title', { message: `${e.message}` })
     }

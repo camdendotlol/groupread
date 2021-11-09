@@ -4,7 +4,7 @@ import { createGroup } from '../../reducers/groupReducer'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import OpenLibraryResults from './OpenLibraryResults'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { initialState as initialFormState } from '../../reducers/groupCreationReducer'
 import { formUpdateTitle, formUpdateAuthor, formUpdateYear, formUpdateIsbn, formUpdateOLID } from '../../reducers/groupCreationReducer'
 import { ErrorTypes, GroupCreationData } from '../../types'
@@ -16,7 +16,7 @@ const CreateGroup: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const dispatch = useAppDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -100,7 +100,7 @@ const CreateGroup: React.FC = () => {
       dispatch(formUpdateIsbn(null))
       dispatch(formUpdateOLID(null))
 
-      history.push(`/groups/${res.id}/schedule`)
+      navigate(`/groups/${res.id}/schedule`)
     } catch(e) {
       return setError('bookTitle', { message: `${e.message}` })
     }

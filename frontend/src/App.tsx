@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { initializeUser } from './reducers/userReducer'
 import { useAppDispatch } from './hooks'
 import Navbar from './components/Navbar'
@@ -33,60 +33,82 @@ const App: React.FC = () => {
       the homepage picture, so we have to wrap each individual component in it
       to avoid affecting the homepage. */}
       <main>
-        <Switch>
-          <Route path="/groups/create">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <GroupCreation />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/groups/:id/schedule">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <GroupScheduler />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/groups/:id/submit">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <NewPostForm />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/groups/:id/:pid">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <PostView />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/groups/:id">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <GroupView />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/groups">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <GroupList />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/compatibility">
-            <Suspense fallback={<LoadingScreen />}>
-              <Container>
-                <Compatibility />
-              </Container>
-            </Suspense>
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path='/groups/create'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <GroupCreation />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/groups/:id/schedule'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <GroupScheduler />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/groups/:id/submit'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <NewPostForm />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/groups/:id/:pid'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <PostView />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/groups/:id'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <GroupView />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/groups'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <GroupList />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/compatibility'
+            element={
+              <Suspense fallback={<LoadingScreen />}>
+                <Container>
+                  <Compatibility />
+                </Container>
+              </Suspense>
+            }
+          />
+          <Route
+            path='/'
+            element={<HomePage />}
+          />
+        </Routes>
       </main>
       <Footer />
     </>

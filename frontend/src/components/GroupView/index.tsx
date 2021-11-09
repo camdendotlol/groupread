@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getGroupDetails, getGroupMembers, getGroupPosts } from '../../reducers/groupReducer'
 import GroupBanner from './GroupBanner'
 import PostList from '../Posts/PostList'
@@ -26,7 +26,7 @@ const GroupView: React.FC = () => {
   const { id } = useParams<{ id: string }>()
 
   const dispatch = useAppDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const userState = useAppSelector(({ user }) => user)
   const user = userState.data
@@ -85,7 +85,7 @@ const GroupView: React.FC = () => {
     return (
       <button
         className='button is-primary level-item'
-        onClick={() => history.push(`/groups/${group.id}/submit`)}
+        onClick={() => navigate(`/groups/${group.id}/submit`)}
       >
         New Post
       </button>

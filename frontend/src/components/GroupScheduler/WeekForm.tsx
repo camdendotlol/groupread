@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { setSchedule } from '../../reducers/groupReducer'
 
 interface Props {
@@ -12,10 +12,10 @@ interface Props {
 
 const WeekForm: React.FC<Props> = ({ initialWeeks, pageCount }) => {
   const user = useAppSelector(({ user }) => user)
-  const { id } = useParams<({ id: string })>()
+  const { id } = useParams<{ id: string }>()
 
   const dispatch = useAppDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const {
     handleSubmit,
@@ -42,7 +42,7 @@ const WeekForm: React.FC<Props> = ({ initialWeeks, pageCount }) => {
         groupID: id,
         token: user.data.token
       }))
-      return history.push(`/groups/${id}`)
+      return navigate(`/groups/${id}`)
     } catch(e) {
       return setError('weeks', { message: `${e.message}` })
     }
