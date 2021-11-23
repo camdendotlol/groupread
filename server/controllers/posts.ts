@@ -40,7 +40,9 @@ postsRouter.post('/:group', async (req: RequestWithToken, res) => {
     return res.status(404).json({ error: 'group not found' })
   }
 
-  const jsonGroup = group.toJSON() as GroupWithMembers
+  // Ugly typing fix because it's late and I wanna be done for the night.
+  // TODO: real fix
+  const jsonGroup = group.toJSON() as unknown as GroupWithMembers
 
   const userObject = jsonGroup.Users.find(u => u.id === tokenID)
 
