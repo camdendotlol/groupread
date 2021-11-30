@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { parseMarkdown } from '../../lib/posts'
@@ -19,21 +19,31 @@ const PostDisplay: React.FC<Props> = ({ postObject }) => {
   // to wait for it to do its thing
   const [text, setText] = useState<string>('')
   const [isEditing, setIsEditing] = useState<boolean>(false)
+  const mountedRef = useRef(true)
 
   const user = useAppSelector(({ user }) => user.data)
+
+  // Cleanup function to track when the component unmounts.
+  // This way we can cancel the parseMarkdown thingy below.
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   // Call the remark function on component load
   // Also re-run it if replyObject changes (e.g.
   // when the post is edited)
   useEffect(() => {
-    const getHTML = async (postContent: string) => {
-      const formattedText = await parseMarkdown(postContent)
-      setText(formattedText)
-    }
-
-    getHTML(postObject.text)
+    parseMarkdown(postObject.text)
+      .then(content => {
+        if (!mountedRef.current) {
+          return null
+        } else {
+          setText(content)
+        }
+      })
   }, [postObject])
-
 
   if (!user) return <LoadingScreen />
 
