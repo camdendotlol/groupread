@@ -21,7 +21,7 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@hookform/error-message": "2.0.0",
-    "@reduxjs/toolkit": "^1.6.2",
+    "@reduxjs/toolkit": "^1.7.0",
     "assert": "^2.0.0",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
