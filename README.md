@@ -1,5 +1,7 @@
 # Groupread - Self-hosted reading groups
 
+**Notice: As of December 14, 2021, this project is archived and no longer deployed. I started it when I barely knew how to code, and I've sunk many hours into bringing things up to speed, with a lot more time still required to bring it up to my current standards. I still want to make a reading group platform at some point, but at this point I think it would be faster to make something new from scratch, maybe using Groupread as a general guide.**
+
 Groupread is a **self-hostable** platform for hosting book discussions.
 
 Pick a book via OpenLibrary's API and Groupread will fill in the metadata and create a discussion group. Each group is inextricably tied to one book, which emphasizes the frictionless group creation process and keeps discussion focused and on-topic.
